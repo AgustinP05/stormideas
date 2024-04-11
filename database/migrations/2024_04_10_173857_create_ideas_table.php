@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('ideas', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();//recordar que user_id hace referencia al id dentro de la tabla de la tabla users
             $table->string('title');
             $table->text('description');
             $table->unsignedInteger('likes');
