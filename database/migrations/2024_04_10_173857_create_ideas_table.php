@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();//recordar que user_id hace referencia al id dentro de la tabla de la tabla users
             $table->string('title');
             $table->text('description');
-            $table->unsignedInteger('likes');
+            $table->unsignedInteger('likes')->default(0);
             $table->timestamps();
         });
     }
