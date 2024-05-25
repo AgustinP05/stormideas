@@ -30,4 +30,9 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/ideas',[IdeaController::class,'index'])->name('idea.index');
+Route::get('/ideas',[IdeaController::class,'index'])->name('idea.index');//Cuando entres a la ruta ideas, te manda al controlador IdeaController y ejecuta su funcion index, esa funcion ejecuta la view ideas.index
+
+Route::get('/ideas/crear',[IdeaController::class,'create'])->name('idea.create');
+Route::post('/ideas/crear',[IdeaController::class,'store'])->name('idea.store');//store es para asubir la informacion a la bd. Se crea la funcion en IdeaController
+
+Route::get('/ideas/editar/{idea}',[IdeaController::class,'edit'])->name('idea.edit');//edit es para modificar la informacion a la bd. Se crea la funcion en IdeaController//Esta es la ruta que te lleva a la vista de editar

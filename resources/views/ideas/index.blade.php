@@ -12,9 +12,7 @@
                     </div>
                 </div>
                 <button>
-                    <svg class="w-6 h-6 text-gray-400 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/>
-                    </svg>
+                    <svg class="w-6 h-6 text-gray-400 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/></svg>
                 </button>
             </div>
                         
@@ -28,9 +26,11 @@
         
 
         <div class=" mb-4">
-            <x-secondary-button class="mx-5 ">AGREGAR</x-secondary-button>
+            <a href="{{route('idea.create')}}" class="inline-flex items-center mx-4 px-6 py-4 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-500 rounded-md font-bold text-sm  text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25 transition ease-in-out duration-150">AGREGAR</a>
+            
             <x-secondary-button>LAS MEJORES</x-secondary-button>
         </div>
+        
         <div class="w-[100%] ">
             <div class=" bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="pt-6 px-6 text-gray-900 dark:text-gray-100">
@@ -39,8 +39,8 @@
                         <div class="mb-8">
                             <div class="flex flex-row justify-between mb-5 ">
                                 <div class="flex flex-row gap-x-4 items-center">
-                                    <h1>{{$idea->user()->name}}</h1> <!-- Por cada $idea estamos llamando el metodo user() (y a su campo 'name') que se encuentra en el modelo Idea.php, ya que este modelo es el que se conecta con la tabla 'ideas'. Recordemos que en el IdeaController dije que $ideas hace referencia a la conexion con la DB en la tabla 'ideas', por eso entonces utilizo el modelo Idea que hace referencia a esa tabla -->
-                                    <small>{{$idea->created_at}}</small> <!--Llamamos a la fecha en la cual se creó, esta fecha se encuentra en la base de datos que se hace de manera automatica-->
+                                    <h1>{{$idea->user->name}}</h1> <!-- Por cada $idea estamos llamando el metodo user() (y a su campo 'name') que se encuentra en el modelo Idea.php, ya que este modelo es el que se conecta con la tabla 'ideas'. Recordemos que en el IdeaController dije que $ideas hace referencia a la conexion con la DB en la tabla 'ideas', por eso entonces utilizo el modelo Idea que hace referencia a esa tabla -->
+                                    <small>{{$idea->created_at->format('d/m/Y')}}</small> <!--Llamamos a la fecha en la cual se creó, esta fecha se encuentra en la base de datos que se hace de manera automatica-->
                                     @unless($idea->created_at->eq($idea->updated_at)) {{--unless es lo contrario de if. Si el momento de creacion es distinto al momento de actualizacion, se muestra la etiqueta que viene despues. Recordar el detalle que al subir una idea a la base de datos, se crea y actualiza al mismo tiempo. Por eso utilizamos este unless para verificar que si se edita la nota que no sea por su creacion--}}
                                             <small class=" text-gray-400 text-sm">- Editado</small>
                                     @endunless
@@ -55,13 +55,13 @@
                                         </x-slot>
                                         <x-slot name="content">
                                         <x-dropdown-link wire:click="edit()">
-                                                {{ __('Ver') }}
+                                                Ver
                                             </x-dropdown-link>
-                                            <x-dropdown-link wire:click="edit()">
-                                                {{ __('Edit') }}
+                                            <x-dropdown-link :href="route('idea.edit',$idea)">
+                                                Editar
                                             </x-dropdown-link>
                                             <x-dropdown-link wire:click="delete()" wire:confirm="Are you sure to delete this chirp?"> 
-                                                 {{ __('Delete') }}
+                                                 Eliminar
                                              </x-dropdown-link> 
                                         </x-slot>
                                     </x-dropdown>

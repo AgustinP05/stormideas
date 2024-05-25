@@ -11,7 +11,10 @@ class Idea extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['user_id','title','description']; //Aquí van los campos que queremos permitir crear con el metodo create en controladores. Esto es por seguridad   // el campo likes no hace falta ponerlo porque no lo estamos creando con el create, sino que ya le pusimos un valor por default desde las migrations
     
+    protected $casts = ['created_at'=>'datetime']; //Para mostrar valores de manera diferente//En este caso es para no mostrar la hora en la que se creó, marcamos que queremos castear el datetime. Y donde lo llamamos declaramos el formato
+
     //Cada idea le pertenece a su usuario//Asi que teniendo un objeto Idea, puedo llamar a la funcion User para tener su usuario que lo creó
     //relacion inversa se llama esto
     public function user():BelongsTo{
