@@ -44,4 +44,19 @@ class IdeaController extends Controller
     public function edit(Idea $idea):View{ //Nos viene la idea del boton edit seleccionado
         return view('ideas.create_or_edit')->with('idea',$idea);//Llamamos a la ruta con la informacion que habiamos pasado por parametro. El '$idea' viene del /{idea} que pusimos en web.php
     }
+
+    public function update(Request $request, Idea $idea):RedirectResponse{ //Se muestra en ideas/edit/{idea} pero cuando se haga PUT por el formulario //la $request es la informacion escrita en el formulario //la $idea es la informacion de la idea en especifico que se hizo click para editar. Esa $idea viene por parametro de create_or_edit
+        
+        //Validamos los datos   
+        $validated = $request-> validate([
+         'title'=> 'required|string|max:50',
+         'description'=> 'string|max:400',
+        ]);
+ 
+        $idea->update($validated); //Agarramos la idea seleccionada y la actualizamos con la informacion validada. El update() es una funcion nativa de Eloquent
+ 
+        //Luego de actualizar, redirigimos la pagina otra vez a ideas.index
+        return redirect()->route('idea.index');
+ 
+     }
 }
