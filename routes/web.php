@@ -32,7 +32,8 @@ require __DIR__.'/auth.php';
 
 Route::get('/ideas',[IdeaController::class,'index'])->name('idea.index');//Cuando entres a la ruta ideas, te manda al controlador IdeaController y ejecuta su funcion index, esa funcion ejecuta la view ideas.index
 
-Route::get('/ideas/crear',[IdeaController::class,'create'])->name('idea.create');
+Route::get('/ideas/crear',[IdeaController::class,'create'])->name('idea.create');//Te lleva a la vista para escribir la informacion
 Route::post('/ideas/crear',[IdeaController::class,'store'])->name('idea.store');//store es para asubir la informacion a la bd. Se crea la funcion en IdeaController
 
-Route::get('/ideas/editar/{idea}',[IdeaController::class,'edit'])->name('idea.edit');//edit es para modificar la informacion a la bd. Se crea la funcion en IdeaController//Esta es la ruta que te lleva a la vista de editar
+Route::get('/ideas/editar/{idea}',[IdeaController::class,'edit'])->name('idea.edit');//edit es para mostrar la vista para luego editar. Se crea la funcion en IdeaController//Esta es la ruta que te lleva a la vista de editar
+Route::put('/ideas/actualizar/{idea}',[IdeaController::class,'update'])->name('idea.update');//Esta es para editar la informacion en la bd con los datos asignados en la vista idea.edit. el /ideas/actualizar/{idea} no se va a ver en la url porque pasa por detras

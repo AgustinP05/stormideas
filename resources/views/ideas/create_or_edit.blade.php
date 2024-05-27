@@ -1,6 +1,6 @@
 <x-app-layout>
-    <div>                       <!--Si $idea no existe o si esta vacia, muestra store, sino muestra el update. El store es para almacenar. Y hace referencia al idea.store de web.php que a su vez hace referencia al store de ideaController-->
-        <form method="POST" action="{{ empty($idea)?route('idea.store'):''}}" class="flex flex-col w-[50%] mx-auto py-12 gap-y-6">
+    <div>                       <!--Si $idea no existe o si esta vacia, muestra store, sino muestra el update. El store es para almacenar. Y hace referencia al idea.store de web.php que a su vez hace referencia al store de ideaController. Sino, te envia a la ruta del update, que ahí hace el put en lugar de crear. Ademas le pasamos la $idea por parametro para que pueda utilizar la informacion que había antes. En cambio el de crear una nota la idea estaba vacía desde un inicio-->
+        <form method="POST" action="{{ empty($idea)?route('idea.store'):route('idea.update',$idea)}}" class="flex flex-col w-[50%] mx-auto py-12 gap-y-6">
             @csrf {{--Es por seguridad.  Para evitar ataques de falsificación de peticiones entre sitios. El CSRF Token es un valor secreto que genera la aplicación del lado del servidor y se transmite al cliente de tal manera que se incluye en la siguiente solicitud realizada por el cliente.--}}
             
             @if (empty($idea))  <!--Si idea no existe, es un post, sino es un put para actualizar-->
