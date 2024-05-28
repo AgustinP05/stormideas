@@ -39,3 +39,5 @@ Route::get('/ideas/editar/{idea}',[IdeaController::class,'edit'])->name('idea.ed
 Route::put('/ideas/actualizar/{idea}',[IdeaController::class,'update'])->name('idea.update');//Esta es para editar la informacion en la bd con los datos asignados en la vista idea.edit. el /ideas/actualizar/{idea} no se va a ver en la url porque pasa por detras
 
 Route::get('/ideas/{idea}',[IdeaController::class,'show'])->name('idea.show');//Muestra la vista de la idea especifica
+
+Route::delete('/ideas/{idea}',[IdeaController::class,'delete'])->name('idea.delete');//manda el DELETE
