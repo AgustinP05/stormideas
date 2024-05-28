@@ -36,6 +36,10 @@ class IdeaController extends Controller
             'description'=>$validated['description']
        ]); 
 
+
+       //Esto es para que cuando se crea la idea, aparezca ese mensaje
+       session()->flash('message','Idea creada con éxito!');
+   
        //Luego de enviar y crear el campo en la base de datos, redirigimos la pagina otra vez a ideas.index
        return redirect()->route('idea.index');
 
@@ -55,6 +59,10 @@ class IdeaController extends Controller
  
         $idea->update($validated); //Agarramos la idea seleccionada y la actualizamos con la informacion validada. El update() es una funcion nativa de Eloquent
  
+
+        //Esto es para que cuando se edite la idea, aparezca ese mensaje
+        session()->flash('message','Idea editada con éxito!');
+
         //Luego de actualizar, redirigimos la pagina otra vez a ideas.index
         return redirect()->route('idea.index');
  
@@ -68,7 +76,11 @@ class IdeaController extends Controller
     public function delete(Idea $idea):RedirectResponse{
         
         $idea->delete();
-        
+
+         //Esto es para que cuando se elimine la idea, aparezca ese mensaje
+         session()->flash('message','Idea eliminada!');
+         
+
         return redirect()->route('idea.index');
     }
 }
