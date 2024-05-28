@@ -37,3 +37,5 @@ Route::post('/ideas/crear',[IdeaController::class,'store'])->name('idea.store');
 
 Route::get('/ideas/editar/{idea}',[IdeaController::class,'edit'])->name('idea.edit');//edit es para mostrar la vista para luego editar. Se crea la funcion en IdeaController//Esta es la ruta que te lleva a la vista de editar
 Route::put('/ideas/actualizar/{idea}',[IdeaController::class,'update'])->name('idea.update');//Esta es para editar la informacion en la bd con los datos asignados en la vista idea.edit. el /ideas/actualizar/{idea} no se va a ver en la url porque pasa por detras
+
+Route::get('/ideas/{idea}',[IdeaController::class,'show'])->name('idea.show');//Muestra la vista de la idea especifica
