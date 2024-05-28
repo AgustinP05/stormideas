@@ -30,7 +30,13 @@
             </div>
         </div>
 
-
+        <!-- Si la sesion tiene este mensaje. Muestra el div. el message viene del IdeaController -->
+        @if (session()->has('message')) 
+            <div class="text-center bg-gray-400/20 rounded-md p-2 mb-4 border-2 border-green-500 font-bold">
+                <span class="text-green-500 text-xl">{{session('message')}}</span>
+            </div>
+        @endif
+        
         <div class=" mb-4">
             <a href="{{route('idea.create')}}"
                 class="inline-flex items-center mx-4 px-6 py-4 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-500 rounded-md font-bold text-sm  text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25 transition ease-in-out duration-150">AGREGAR</a>
