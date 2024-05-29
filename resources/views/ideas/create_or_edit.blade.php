@@ -14,11 +14,10 @@
             <x-text-input id="title" type="text" name="title" :value="old('title', empty($idea)? '':$idea->title)" placeholder="Ingresa un titulo"/>
             <x-input-error :messages="$errors->get('title')"/>
 
-            <textarea id="description" type="text" name="description" :value="old('description')" placeholder="Idea para aportar"  class="bg-transparent rounded-xl text-slate-200">
-            {{old('description', empty($idea)?'Idea para aportar':$idea->description)}}
-            </textarea> 
+            <textarea id="description" type="text" name="description" placeholder="Idea para aportar"  class="bg-transparent rounded-xl text-slate-200">{{old('description',empty($idea)?'':$idea->description)}}</textarea> 
             <x-input-error :messages="$errors->get('description')"/>
 
+            
             <div class=" mb-4">
             <a href="{{route('idea.store')}}" class="inline-flex items-center mx-4 px-6 py-4 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-500 rounded-md font-bold text-sm  text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25 transition ease-in-out duration-150">
             {{empty($idea)?'GUARDAR':'ACTUALIZAR'}}</a>
