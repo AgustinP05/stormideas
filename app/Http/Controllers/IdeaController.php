@@ -90,4 +90,26 @@ class IdeaController extends Controller
 
         return redirect()->route('idea.index');
     }
+
+    public function synchronizeLikes(Request $request, Idea $idea):RedirectResponse{//Recordar que el boton de like en cada idea está con un form, asi que estamos mas obligados en utilizar la request
+
+        //El usuario autenticado que le da like (click al boton dentro del form), le hace toggle al ideasLiked de la idea clickeada 
+        $request->user()->ideasLiked()->toggle([$idea->id]); //En la bd en idea_user, si el usuario esta asociado al id de la idea, significa que ya le dió el like. El toggle recibe el id de la idea, entonces si esa id de idea está en la relacion, la quita o viceversa
+        
+        //Otra manera:
+        //Una idea puede recibir likes de varios usuarios. Entonces, esta idea se vuelve likeada por el usuario autenticado
+        //$idea->usersLikedThis()->toggle([$request->user()->id]);
+
+        //Ademas tenemos que modificar numero del campo likes en la tabla idea. El count nos da el numero de la cantidad de usuarios dieron like a esa idea
+        $cantidadLikes= $idea->usersLikedThis()->count();
+
+        //Actualizamos likes de la tabla idea con el numero de la variable
+        $idea->update(['likes'=>$cantidadLikes]);
+
+        return redirect()->route('idea.show',$idea);
+
+        ////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////
+        ///////////REVISAR POR QUE SE PONE EL ' Editado 01/06/2024 01:06am' CUANDO LE DOY LIKE A ALGUNA IDEA
+    }
 }

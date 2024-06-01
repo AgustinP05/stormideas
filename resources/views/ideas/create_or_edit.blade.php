@@ -18,15 +18,11 @@
             <x-input-error :messages="$errors->get('description')"/>
 
             
-            <div class=" mb-4">
-            <a href="{{route('idea.store')}}" class="inline-flex items-center mx-4 px-6 py-4 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-500 rounded-md font-bold text-sm  text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25 transition ease-in-out duration-150">
-            {{empty($idea)?'GUARDAR':'ACTUALIZAR'}}</a>
-
-            <x-primary-button>{{empty($idea)?'GUARDAR':'ACTUALIZAR'}}</x-primary-button>
-            <a href="{{route('idea.index')}}" class="inline-flex items-center mx-4 px-6 py-4 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-500 rounded-md font-bold text-sm  text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25 transition ease-in-out duration-150">
-            CANCELAR</a>
-            
-        </div>
+            <div class="flex justify-between mb-4">
+                <x-primary-button>{{empty($idea)?'GUARDAR':'ACTUALIZAR'}}</x-primary-button>
+                <a href="{{route('idea.index')}}" class="inline-flex items-center text-sm  text-gray-300 uppercase tracking-widest shadow-sm  focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-800 hover:text-gray-200/50 transition-all">
+                Volver</a>
+            </div>
         </form>
     </div>
 </x-app-layout>
