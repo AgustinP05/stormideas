@@ -41,3 +41,7 @@ Route::put('/ideas/actualizar/{idea}',[IdeaController::class,'update'])->name('i
 Route::get('/ideas/{idea}',[IdeaController::class,'show'])->name('idea.show');//Muestra la vista de la idea especifica
 
 Route::delete('/ideas/{idea}',[IdeaController::class,'delete'])->name('idea.delete');//manda el DELETE
+
+
+Route::put('/ideas/{idea}',[IdeaController::class,'synchronizeLikes'])->name('idea.synchronizeLikes');//Aumenta el like de una idea
+

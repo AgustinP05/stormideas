@@ -29,7 +29,7 @@
 
             <p class="mb-5">{{$idea->description}}</p>
 
-            <form method="PUT" action="" class="flex align-middle justify-between items-center">
+            <form method="POST" action="" class="flex align-middle justify-between items-center">
                 @csrf
                 @method("put")
                 <div class="flex gap-x-5 items-center">
@@ -42,7 +42,8 @@
                     <span>Likes: {{$idea->likes}}</span>
                 </div>
 
-                <a class="hover:text-gray-200/50" href="{{route('idea.index')}}">Volver</a>
+                <a href="{{route('idea.index')}}" class="inline-flex items-center text-sm  text-gray-300 uppercase tracking-widest shadow-sm  focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-800 hover:text-gray-200/50 transition-all">
+                Volver</a>
             </form>
         </div>
     </div>

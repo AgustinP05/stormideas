@@ -11,7 +11,7 @@ class Idea extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id','title','description']; //Aquí van los campos que queremos permitir crear con el metodo create en controladores. Esto es por seguridad   // el campo likes no hace falta ponerlo porque no lo estamos creando con el create, sino que ya le pusimos un valor por default desde las migrations
+    protected $fillable = ['user_id','title','description','likes']; //Aquí van los campos que queremos permitir crear con el metodo create o modificar con upgrade en controladores. Esto es por seguridad   
     
     protected $casts = ['created_at'=>'datetime']; //Para mostrar valores de manera diferente//En este caso es para no mostrar la hora en la que se creó, marcamos que queremos castear el datetime. Y donde lo llamamos declaramos el formato
 
